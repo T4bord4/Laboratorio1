@@ -1,0 +1,51 @@
+##IAR Ninja build file
+
+
+#Rules
+rule COMPILER_XCL
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\XclFileGenerator.exe $xclcommand -f "$rspfile_name"
+  description = IAR_NEW_TOOL+++COMPILER_XCL+++$in+++C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\XclFileGenerator.exe $flags
+  rspfile = $rspfile_name
+  rspfile_content = $flags
+
+rule INDEXER
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\SourceIndexer.exe $flags
+  depfile = $out.dep
+  description = IAR_NEW_TOOL+++INDEXER+++$out+++C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\SourceIndexer.exe $flags
+
+rule MAKEBROWSE
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\makeBrowseData.exe $flags
+  description = IAR_NEW_TOOL+++MAKEBROWSE+++$out+++C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\makeBrowseData.exe $flags
+
+rule PDBLINK
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\PbdLink.exe $flags
+  description = IAR_NEW_TOOL+++PDBLINK+++$out+++C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\PbdLink.exe $flags
+
+
+
+#Build steps
+build C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.xcl : COMPILER_XCL 
+  xclcommand = -source_file "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\main.c" -xcl_file "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.xcl" -macro_file "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.tmp" -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\main.c" -o "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\Obj\\" --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.tmp"
+  rspfile_name = C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.xcl.rsp
+
+build C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.xcl : COMPILER_XCL 
+  xclcommand = -source_file "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\src\system_TM4C1294_TW.c" -xcl_file "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.xcl" -macro_file "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.tmp" -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\src\system_TM4C1294_TW.c" -o "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\Obj\\" --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.tmp"
+  rspfile_name = C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.xcl.rsp
+
+build C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.pbi : INDEXER C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.xcl |  $
+C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\main.c
+  flags = "-out=C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.pbi" -f "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.xcl"
+
+build C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.pbi : INDEXER C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.xcl |  $
+C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\src\system_TM4C1294_TW.c
+  flags = "-out=C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.pbi" -f "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.xcl"
+
+build C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\lab_1.pbw : MAKEBROWSE C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\lab_1.pbd
+  flags = "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\lab_1.pbd" -output "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\lab_1.pbw"
+
+build C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\lab_1.pbd : PDBLINK C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.pbi |  $
+C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.pbi
+  flags = -M "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\lab_1.pbd" "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\main.pbi" "C$:\Users\matc\Documents\GIT-Projects\Sistemas$ Embarcados$ -$ Lab$ 1\Debug\BrowseInfo\system_TM4C1294_TW.pbi"
+
